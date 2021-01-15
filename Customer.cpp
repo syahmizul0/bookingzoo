@@ -1,6 +1,5 @@
 #include "Customer.h"
 #include "includes.h"
-#include "GlobalFunctions.h"
 Customer::Customer()
 {
 
@@ -57,7 +56,7 @@ void Customer::Reserve()
 	}
 	
 	std::cout << std::endl;
-	std::cout << "Do you want to add another ticket type?(y/n)"; std::cin >> moretickettype;
+	std::cout << "Do you want to add another ticket type?(y/n) : "; std::cin >> moretickettype;
 	if (moretickettype == 'y')
 		goto start;
 	if (moretickettype = 'n' && counting > 0)
@@ -66,7 +65,7 @@ void Customer::Reserve()
 		std::cin >> editnewdate;
 
 		if (editnewdate == 'n')
-			OptionScreen();
+			goto start;
 	}
 	std::cout << "Enter the date you want to book (in numbers) : \n";
 	std::cout << "Enter the day : "; std::cin >> this->dateofbooking[0];
@@ -175,7 +174,7 @@ void Customer::DisplayReceipt()
 	system("pause");
 }
 
-void Customer::insertionSort(std::string name[], int n)
+void Customer::InsertionSort(std::string name[], int n)
 {
 	int i, key, j;
 	std::string key2;
@@ -191,4 +190,15 @@ void Customer::insertionSort(std::string name[], int n)
 		}
 		name[j + 1] = key2;
 	}
+}
+
+void Customer::ExitProgram()
+{
+	static int count = 1;
+
+	system("cls");
+	std::cout << "\nThank You For Choosing Zoo Booking System :)\n";
+	std::getline(std::cin, this->name);
+
+	count++;
 }
