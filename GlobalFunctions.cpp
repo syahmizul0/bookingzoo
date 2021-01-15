@@ -86,7 +86,7 @@ void OptionScreen()
 		{
 			case 1:	customer.Reserve(); break;
 			case 2:	customer.DisplayReceipt(); break;
-			case 3:	exit(0); break;
+			case 3:	customer.ExitProgram() , exit(0); break;
 			default: 
 				system("cls");
 				goto loop;
@@ -96,9 +96,3 @@ void OptionScreen()
 	}
 	
 }
-
-
-
-
-
-
