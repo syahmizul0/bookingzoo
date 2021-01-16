@@ -2,12 +2,10 @@
 #include "Customer.h"
 #include "includes.h"
 #include "CreateAccount.h"
-
-
+Customer* g_customer = new Customer;
 void Login()
 {
 	CreateAccount user;
-
 	char FIRSTNAME[10];
 	char LASTNAME[10];
 	char FULLNAME[20];
@@ -58,17 +56,11 @@ void Welcome()
 
 void OptionScreen()
 {
-	static int count = 0;
-	Customer* customer = nullptr;
-	if(count == 0)
-	{ 
-		customer = new Customer;
-	}
+
 	std::ifstream OptionFile;
 	std::string line;
 	int option;
 	system("cls");
-	count++;
 	while (1)
 	{
 	loop:
@@ -90,9 +82,9 @@ void OptionScreen()
 
 		switch (option)
 		{
-			case 1:	customer->Reserve(); break;
-			case 2:	customer->DisplayReceipt(); break;
-			case 3:	customer->ExitProgram() , exit(0); break;
+			case 1:	g_customer->Reserve(); break;
+			case 2:	g_customer->DisplayReceipt(); break;
+			case 3:	g_customer->ExitProgram() , exit(0); break;
 			default: 
 				system("cls");
 				goto loop;

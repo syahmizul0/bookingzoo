@@ -3,7 +3,8 @@
 
 int main()
 {
-	//Login();
+
+	Login();
 	Welcome();
 	OptionScreen();
 }

@@ -146,11 +146,12 @@ void Customer::VariableCounter(std::vector<std::array<std::string, 2>> *array)
 
 void Customer::DisplayReceipt()
 {
-	
 	std::vector<std::array<std::string, 2>>array;
 	VariableCounter(&array);
 	std::vector<int> num;
 	std::vector<std::string> str;
+	float pricing = 0;
+	float total = 0;
 	for (size_t i = 0; i < array.size(); i++)
 	{
 		num.push_back(std::stoi(array[i][0]));
@@ -170,15 +171,20 @@ void Customer::DisplayReceipt()
 		std::cout << "\nTicket Infos:\n\n";
 		for (size_t k = 0; k < array.size(); k++)
 		{
+			pricing = 0;
 			std::cout << array.at(k)[1] << " - " << array.at(k)[0] << std::endl;
 			for (size_t i = 0; i < this->guestslist.size(); ++i)
 			{
 				if (this->guestslist.at(i)->nationality + " " + this->guestslist.at(i)->customerType == array.at(k)[1])
 				{
 					std::cout << this->guestslist.at(i)->name << std::endl;
+					pricing += this->guestslist.at(i)->pricing;
+					total += this->guestslist.at(i)->pricing;
 				}
 			}
+			std::cout << "\nPricing for this category : RM" << pricing << std::endl;
 		}
+		std::cout << "\nThe total pricing is : RM" << total << std::endl;
 		
 	}
 	system("pause");

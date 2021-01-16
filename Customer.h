@@ -19,3 +19,4 @@ private:
 	float pricing;
 	std::string nationality;
 };
+
