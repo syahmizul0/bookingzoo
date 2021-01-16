@@ -8,7 +8,7 @@ public:
 	void TicketInput();
 	void VariableCounter(std::vector<std::array<std::string, 2>>* array); //counts how many customer types there are and store it in a vector
 	void DisplayReceipt();
-	void InsertionSort(std::string name[], int n); //modified version of insertion sort from https://www.geeksforgeeks.org/insertion-sort/
+	void InsertionSort(std::vector<int>& test, std::vector<std::string>& teststr); //modified version of insertion sort from https://www.geeksforgeeks.org/insertion-sort/
 	void ExitProgram();
 
 private:

@@ -58,11 +58,17 @@ void Welcome()
 
 void OptionScreen()
 {
-	system("cls");
-	Customer customer;
+	static int count = 0;
+	Customer* customer = nullptr;
+	if(count == 0)
+	{ 
+		customer = new Customer;
+	}
 	std::ifstream OptionFile;
 	std::string line;
 	int option;
+	system("cls");
+	count++;
 	while (1)
 	{
 	loop:
@@ -84,9 +90,9 @@ void OptionScreen()
 
 		switch (option)
 		{
-			case 1:	customer.Reserve(); break;
-			case 2:	customer.DisplayReceipt(); break;
-			case 3:	customer.ExitProgram() , exit(0); break;
+			case 1:	customer->Reserve(); break;
+			case 2:	customer->DisplayReceipt(); break;
+			case 3:	customer->ExitProgram() , exit(0); break;
 			default: 
 				system("cls");
 				goto loop;

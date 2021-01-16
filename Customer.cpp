@@ -1,5 +1,6 @@
 #include "Customer.h"
 #include "includes.h"
+#include "GlobalFunctions.h"
 Customer::Customer()
 {
 
@@ -65,7 +66,7 @@ void Customer::Reserve()
 		std::cin >> editnewdate;
 
 		if (editnewdate == 'n')
-			goto start;
+			OptionScreen();
 	}
 	std::cout << "Enter the date you want to book (in numbers) : \n";
 	std::cout << "Enter the day : "; std::cin >> this->dateofbooking[0];
@@ -145,9 +146,22 @@ void Customer::VariableCounter(std::vector<std::array<std::string, 2>> *array)
 
 void Customer::DisplayReceipt()
 {
+	
 	std::vector<std::array<std::string, 2>>array;
 	VariableCounter(&array);
-
+	std::vector<int> num;
+	std::vector<std::string> str;
+	for (size_t i = 0; i < array.size(); i++)
+	{
+		num.push_back(std::stoi(array[i][0]));
+		str.push_back(array[i][1]);
+	}
+	InsertionSort(num, str);
+	for (size_t i = 0; i < num.size(); i++)
+	{
+		array[i][0] = std::to_string(num[i]);
+		array[i][1] = str[i];
+	}
 	system("cls");
 	std::cout << "\nYour booking date : \n";
 	std::cout << "Day : " << this->dateofbooking[0] << "\n"<< "Month : " << this->dateofbooking[1] << "\n" << "Year : " << this->dateofbooking[2] << std::endl;
@@ -161,12 +175,8 @@ void Customer::DisplayReceipt()
 			{
 				if (this->guestslist.at(i)->nationality + " " + this->guestslist.at(i)->customerType == array.at(k)[1])
 				{
-					std::cout <<this->guestslist.at(i)->name << std::endl;
+					std::cout << this->guestslist.at(i)->name << std::endl;
 				}
-				/*std::cout << std::endl;
-				std::cout << "Name of guest " << i + 1 << " : " << this->guestslist.at(i)->name << std::endl;
-				std::cout << "Ticket Type : " << this->guestslist.at(i)->nationality << " " << this->guestslist.at(i)->customerType << std::endl;
-				std::cout << std::endl;*/
 			}
 		}
 		
@@ -174,21 +184,23 @@ void Customer::DisplayReceipt()
 	system("pause");
 }
 
-void Customer::InsertionSort(std::string name[], int n)
+void Customer::InsertionSort(std::vector<int> &test, std::vector<std::string> &teststr)
 {
-	int i, key, j;
+	int j, key1;
 	std::string key2;
-	for (i = 1; i < n; i++)
+	for (size_t i = 1; i < test.size(); i++)
 	{
-		key = (int)name[i].front();
-		key2 = name[i];
+		key1 = test[i];
+		key2 = teststr[i]; // index 1 , the text
 		j = i - 1;
-		while (j >= 0 && key < (int)name[j].front())
+		while (j >= 0 && key1 < test[j])
 		{
-			name[j + 1] = name[j];
+			test[j + 1] = test[j];
+			teststr[j + 1] = teststr[j];
 			j = j - 1;
 		}
-		name[j + 1] = key2;
+		test[j + 1] = key1;
+		teststr[j + 1] = key2;
 	}
 }
 
